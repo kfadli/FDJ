@@ -9,6 +9,7 @@ import com.kfadli.fdj.domain.usecases.GetTeamsByLeagueUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -16,7 +17,8 @@ class HomeViewModel(
     private val getLeaguesUseCase: GetAllLeaguesUseCase,
     private val getTeamsUseCase: GetTeamsByLeagueUseCase,
 ) : ViewModel() {
-    val state = MutableStateFlow<UIState>(UIState.Loading)
+    val _state = MutableStateFlow<UIState>(UIState.Loading)
+    val state = _state.asStateFlow()
 
     fun getLeagues() {
         Timber.v("[getLeagues]")
@@ -24,12 +26,12 @@ class HomeViewModel(
             getLeaguesUseCase()
                 .onSuccess {
                     Timber.d("[getLeagues] Success")
-                    state.value = UIState.LeagueUISuccess(items = it)
+                    _state.value = UIState.LeagueUISuccess(items = it)
                 }.onFailure {
                     Timber.w(message = "[getLeagues] Failure", t = it)
-                    state.value = UIState.Failure(cause = it)
+                    _state.value = UIState.Failure(cause = it)
                     delay(200)
-                    state.value = UIState.Idle
+                    _state.value = UIState.Idle
                 }
         }
     }
@@ -40,12 +42,12 @@ class HomeViewModel(
             getTeamsUseCase(leagueName)
                 .onSuccess {
                     Timber.d(message = "[getTeams] Success")
-                    state.value = UIState.TeamsUISuccess(items = it)
+                    _state.value = UIState.TeamsUISuccess(items = it)
                 }.onFailure {
                     Timber.w(message = "[getTeams] Failure", t = it)
-                    state.value = UIState.Failure(cause = it)
+                    _state.value = UIState.Failure(cause = it)
                     delay(200)
-                    state.value = UIState.Idle
+                    _state.value = UIState.Idle
                 }
         }
     }
