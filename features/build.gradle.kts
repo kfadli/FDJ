@@ -45,9 +45,14 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":core"))
 
+    implementation(libs.coil)
+
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.vm)
     implementation(libs.koin.android)
+
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.foundation.layout)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
