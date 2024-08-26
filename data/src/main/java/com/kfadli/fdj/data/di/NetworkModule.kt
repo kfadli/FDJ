@@ -26,4 +26,3 @@ val networkModule =
 
 const val THE_SPORTS_DB = "THE_SPORTS_DB"
 const val THE_SPORTS_DB_API = "THE_SPORTS_DB_API"
-const val THE_SPORTS_DB_KEY = "50130162"
