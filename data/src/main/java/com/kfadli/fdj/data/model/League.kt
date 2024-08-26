@@ -1,4 +1,4 @@
-package com.kfadli.fdj.data
+package com.kfadli.fdj.data.model
 
 data class League(
     val id: Long,

@@ -1,6 +1,6 @@
-package com.kfadli.fdj.domain.model
+package com.kfadli.fdj.domain.models
 
-data class LeagueUI(
+data class TeamUI(
     val id: Long,
     val name: String,
     val iconUrl: String,
