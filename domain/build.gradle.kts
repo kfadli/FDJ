@@ -33,9 +33,13 @@ android {
 }
 
 dependencies {
-
-    implementation(project(":core"))
     implementation(project(":data"))
+
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.android)
+    implementation(libs.koin.core)
+
+    implementation(libs.timber)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

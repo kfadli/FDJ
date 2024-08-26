@@ -57,7 +57,7 @@ ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 #koin
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
 koin-compose = { module = "io.insert-koin:koin-compose" }
-koin-compose-VM = { module = "io.insert-koin:koin-compose-viewmodel" }
+koin-compose-vm = { module = "io.insert-koin:koin-compose-viewmodel" }
 
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose" }
 koin-core = { module = "io.insert-koin:koin-core" }

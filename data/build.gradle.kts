@@ -34,9 +34,13 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
-
     implementation(libs.kotlinx.serialization.json)
+
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.android)
+    implementation(libs.koin.core)
+
+    implementation(libs.timber)
 
     // ktor
     implementation(libs.ktor.core)

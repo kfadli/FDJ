@@ -43,13 +43,16 @@ android {
 
 dependencies {
     implementation(project(":domain"))
-    implementation(project(":core"))
 
     implementation(libs.coil)
 
+    implementation(platform(libs.koin.bom))
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.vm)
     implementation(libs.koin.android)
+    implementation(libs.koin.core)
+
+    implementation(libs.timber)
 
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.foundation.layout)
