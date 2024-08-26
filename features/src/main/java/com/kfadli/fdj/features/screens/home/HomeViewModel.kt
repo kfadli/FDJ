@@ -6,6 +6,7 @@ import com.kfadli.fdj.domain.models.LeagueUI
 import com.kfadli.fdj.domain.models.TeamUI
 import com.kfadli.fdj.domain.usecases.GetAllLeaguesUseCase
 import com.kfadli.fdj.domain.usecases.GetTeamsByLeagueUseCase
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,15 +15,16 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class HomeViewModel(
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
     private val getLeaguesUseCase: GetAllLeaguesUseCase,
     private val getTeamsUseCase: GetTeamsByLeagueUseCase,
 ) : ViewModel() {
-    val _state = MutableStateFlow<UIState>(UIState.Loading)
+    private val _state = MutableStateFlow<UIState>(UIState.Loading)
     val state = _state.asStateFlow()
 
     fun getLeagues() {
         Timber.v("[getLeagues]")
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             getLeaguesUseCase()
                 .onSuccess {
                     Timber.d("[getLeagues] Success")
@@ -38,7 +40,7 @@ class HomeViewModel(
 
     fun getTeams(leagueName: String) {
         Timber.v("[getTeams] leagueName: $leagueName")
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             getTeamsUseCase(leagueName)
                 .onSuccess {
                     Timber.d(message = "[getTeams] Success")
