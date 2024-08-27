@@ -1,7 +1,7 @@
 package com.kfadli.fdj.domain
 
-import com.kfadli.fdj.data.LeaguesRepository
 import com.kfadli.fdj.data.model.League
+import com.kfadli.fdj.data.repository.LeaguesRepository
 import com.kfadli.fdj.domain.usecases.GetAllLeaguesUseCase
 import io.mockk.coEvery
 import io.mockk.coVerify

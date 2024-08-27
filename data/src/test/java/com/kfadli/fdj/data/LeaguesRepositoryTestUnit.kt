@@ -1,9 +1,12 @@
 package com.kfadli.fdj.data
 
+import com.kfadli.fdj.data.datasource.LeaguesApiDataSource
 import com.kfadli.fdj.data.network.response.LeagueResponse
 import com.kfadli.fdj.data.network.response.LeaguesResponse
 import com.kfadli.fdj.data.network.response.TeamResponse
 import com.kfadli.fdj.data.network.response.TeamsResponse
+import com.kfadli.fdj.data.repository.LeaguesRepository
+import com.kfadli.fdj.data.repository.LeaguesRepositoryImpl
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -17,7 +20,7 @@ class LeaguesRepositoryTestUnit {
 
     @Before
     fun setUp() {
-        instance = LeaguesRepository(dataSource)
+        instance = LeaguesRepositoryImpl(dataSource)
     }
 
     @Test
