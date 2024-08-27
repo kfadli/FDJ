@@ -97,7 +97,11 @@ fun HomeLayout(
                 },
                 onConfirm =
                     if (leagues.value.isEmpty()) {
-                        { onRetry() }
+                        {
+                            showErrorDialog = false
+                            messageErrorDialog = null
+                            onRetry()
+                        }
                     } else {
                         null
                     },
