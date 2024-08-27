@@ -63,7 +63,6 @@ class HomeViewModelTest {
             instance.getLeagues()
 
             instance.state.test {
-                val loading = awaitItem()
                 val item = awaitItem()
 
                 assert(item is LeagueUISuccess)
@@ -134,6 +133,7 @@ class HomeViewModelTest {
             instance.getTeams(leagueName)
 
             instance.state.test {
+                val loading = awaitItem()
                 val error = awaitItem()
 
                 assert(error is Failure)
