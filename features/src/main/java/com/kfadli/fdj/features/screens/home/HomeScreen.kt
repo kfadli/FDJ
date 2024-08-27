@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.kfadli.fdj.domain.models.LeagueUI
 import com.kfadli.fdj.domain.models.TeamUI
 import com.kfadli.fdj.features.extensions.toStringError
+import com.kfadli.fdj.features.screens.home.UIState.*
 import com.kfadli.fdj.features.ui.AutoCompleteSelectBar
 import com.kfadli.fdj.features.ui.BadgeFromUrl
 import com.kfadli.fdj.features.ui.FDJLoadingDialog
@@ -59,16 +60,15 @@ fun HomeLayout(
 
     var showErrorDialog by remember { mutableStateOf(false) }
     var messageErrorDialog by remember { mutableStateOf<String?>(null) }
-    var leagueSelected by remember { mutableStateOf("") }
 
     when (state) {
-        is UIState.Failure -> {
+        is Failure -> {
             messageErrorDialog = state.cause.toStringError()
             showErrorDialog = true
         }
-        UIState.Loading -> FDJLoadingDialog()
-        is UIState.LeagueUISuccess -> leagues.value = state.items
-        is UIState.TeamsUISuccess -> teams.value = state.items
+        Loading -> FDJLoadingDialog()
+        is LeagueUISuccess -> leagues.value = state.items
+        is TeamsUISuccess -> teams.value = state.items
         else -> {}
     }
 
@@ -78,7 +78,6 @@ fun HomeLayout(
             hint = "Search by league",
             label = "Leagues",
             onSelected = {
-                leagueSelected = it
                 onSelected(it)
             },
         )
